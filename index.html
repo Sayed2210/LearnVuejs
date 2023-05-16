@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <h1>Hello {{name}}</h1>
+        <p>Your age {{age+"Years Old"}}</p>
+        <p>Your Skills is {{skills[0]
+        }}</p>
+        <!-- <p>Results</p>
+        <p>First Task is {{tests[0].firstTest}} You Get {{tests[0].testResult +"%"}}</p>
+        <p>Second Task is {{tests[1].secondTest}} You Get {{tests[1].testResult +"%"}}</p>
+        <p>Third Task is {{tests[2].thirdTest}} You Get {{tests[2].testResult + "%"}}</p> -->
+        <ul>
+            <li v-for="skill in skills">
+                {{skill}}
+            </li>
+            <li v-for="(skill,index) in skills">
+                {{index}}:    {{skill}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="test in tests">
+                {{test.test}}={{test.testResult +"%"}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(test,index) in tests">
+                {{index}}:{{test.test}}={{test.testResult +"%"}}
+            </li>
+        </ul>
+        <p>{{ yourAgeByDate() }}</p>
+        <p>{{ sayHello() }}</p>
+    </div>
+    
+    <script src="js/vue.js"></script>
+<script>
+    const { createApp } = Vue
+    createApp({
+        data() {
+        return {
+            name: 'Elsayed',
+            age: 23,
+            skills: ["HTML","CSS","JS","SCSS","GULPJS","PUGJS","JEST","VUEJS"],
+            tests: [ 
+                {
+                test: "HTML",
+                testResult: 88
+                },  
+                {
+                test: "CSS",
+                testResult: 92
+                },   
+                {
+                test: "JS",
+                testResult: 76
+                }, 
+                ]
+            }
+        },
+        methods: {
+            yourAgeByDate: function(){
+                return "Your Age By Day"+ this.age * 365;
+            },
+            sayHello: function(){
+                return "Hello"
+            }
+        }
+    }).mount('#app')
+    
+</script>
+</body>
+</html>
